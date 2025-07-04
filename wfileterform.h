@@ -2,7 +2,7 @@
 #define WFILETERFORM_H
 
 #include <QWidget>
-#include <QDesktopWidget>
+#include <QScreen>
 
 #include "wfilterstatement.h"
 #include "wfilterword.h"

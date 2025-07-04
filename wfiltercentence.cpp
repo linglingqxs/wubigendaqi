@@ -1,5 +1,8 @@
 #include "wfiltercentence.h"
 #include "ui_wfiltercentence.h"
+#include <QtCore5Compat>
+#include <QString>
+#include <QRegularExpression>
 
 WfilterCentence::WfilterCentence(QWidget *parent) :
     QWidget(parent),
@@ -113,13 +116,14 @@ void WfilterCentence::on_pushButton_send_clicked()
 
     //tempStrList 临时列表
     QString fileContents = WfilePipi::fileContents;
-    QStringList tempStrList = fileContents.split(QRegExp(ui->lineEdit_fenge->text()), QString::SkipEmptyParts);
+    QStringList tempStrList = fileContents.split(QRegularExpression(ui->lineEdit_fenge->text()), Qt::SkipEmptyParts);
     int contentsLength = tempStrList.length();
 
     //是否随机
     if (true == ui->radioButton_order_suiji->isChecked()){
         for(int i = 0; i< contentsLength; i++){
-            int randIndex = qrand() % contentsLength;
+            int a = QRandomGenerator::global()->bounded(0,32767);
+            int randIndex = a % contentsLength;
             int currentIndex = i % contentsLength;
 
             if (randIndex != currentIndex) {

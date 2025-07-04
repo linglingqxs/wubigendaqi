@@ -88,7 +88,7 @@ void WUserRecord::showUserSpeed(){
 
     // set axis ranges to show all data:
     if (maxx <= 0){
-        double now = QDateTime::currentDateTime().toTime_t();
+        double now = QDateTime::currentDateTime().toMSecsSinceEpoch();
         minx = now;
         maxx = now + 3600 * 5;
     }

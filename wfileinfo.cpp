@@ -25,14 +25,13 @@ QString WFileInfo::getFileContents(QString filePath){
     } else {
         fileName = this->filePath;
     }
-    QTextCodec * code = QTextCodec::codecForName("utf8");
     QFile file(fileName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QMessageBox::warning(this,"Warning","can't open",QMessageBox::Yes);
     }
     QTextStream stream(&file);
-    stream.setCodec(code);//对输出流的设置
+    stream.setEncoding(QStringConverter::Utf8);//对输出流的设置
 
     while (stream.atEnd() == 0) {
         this->fileContents = stream.readAll();

@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QtCore5Compat>
+#include <QRegularExpression>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->db->connect(dataPath + "/user.db");
 
     //居中设置
-    QDesktopWidget* desktop = QApplication::desktop();
-    int width = desktop->width();
-    int height = desktop->height();
+    QScreen* desktop = QApplication::primaryScreen();
+    int width = desktop->geometry().width();
+    int height = desktop->geometry().height();
     move((width - this->width())/2, (height - this->height())/2);
 
 
@@ -141,7 +144,7 @@ void MainWindow::repeatSend()
 {
     if (WfilePipi::isPricatce == false){
         QDateTime dt = QDateTime::currentDateTime();
-        WfilePipi::ukey = dt.toTime_t(); //保证唯一
+        WfilePipi::ukey = dt.toMSecsSinceEpoch(); //保证唯一
         WfilePipi::index = 0;
         this->yiedText();
     } else{
@@ -230,9 +233,9 @@ void MainWindow::showDi(){
             currentIndex = 0;
         }
         QString showLineStr = WfilePipi::contentList.at(currentIndex);
-        QStringList showLineList = showLineStr.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        QStringList showLineList = showLineStr.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
 
-        QStringList userTextList = userText.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        QStringList userTextList = userText.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
         if(showLineList.length() > userTextList.length()) {
             currentWord = showLineList.at(userTextList.length());
         } else {
@@ -264,7 +267,7 @@ void MainWindow::readDi(QString filePath){
     }
     WFileInfo *fileInfo = new WFileInfo;
     QString contents = fileInfo->getFileContents(filePath);
-    QStringList contentsList = contents.split("\n", QString::SkipEmptyParts);
+    QStringList contentsList = contents.split("\n", Qt::SkipEmptyParts);
     for(int i = 0; i< contentsList.length(); i++){
         QString currentLine = contentsList[i];
         currentLine = currentLine.simplified();

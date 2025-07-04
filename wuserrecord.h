@@ -8,6 +8,7 @@
 #include <QDateTime>
 #include <QSharedPointer>
 #include <QFont>
+#include <QOBJECT>
 
 namespace Ui {
 class WUserRecord;

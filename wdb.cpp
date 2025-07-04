@@ -57,7 +57,7 @@ id key
     sqlQuery.bindValue(":current_progress", WfilePipi::current_progress); //当前进度
 
     QDateTime dt = QDateTime::currentDateTime();
-    sqlQuery.bindValue(":ctime", dt.toTime_t()); //插入时间
+    sqlQuery.bindValue(":ctime", dt.toMSecsSinceEpoch()); //插入时间
 
     if (sqlQuery.exec()){
         return true;

@@ -1,4 +1,6 @@
 #include "wfilepipi.h"
+#include <QString>
+#include <QMap>
 
 QString WfilePipi::filePath = "";
 QString WfilePipi::fileName = "";
@@ -37,7 +39,7 @@ WfilePipi::WfilePipi()
 void WfilePipi::initUserInfo(){
     QDateTime dt = QDateTime::currentDateTime();
 
-    WfilePipi::ukey = dt.toTime_t(); //唯一
+    WfilePipi::ukey = dt.toMSecsSinceEpoch(); //唯一
 
     if (false == WfilePipi::isPricatce){
         WfilePipi::isEnd = false;

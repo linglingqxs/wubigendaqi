@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QDesktopWidget>
+#include <QScreen>
 #include "wfileinfo.h"
 #include <QString>
 #include "wfileterform.h"

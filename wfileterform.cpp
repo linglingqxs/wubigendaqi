@@ -1,5 +1,8 @@
 #include "wfileterform.h"
 #include "ui_wfileterform.h"
+#include <QWidget>
+#include <Qscreen>
+
 
 WFileterForm::WFileterForm(QWidget *parent) :
     QWidget(parent),
@@ -8,9 +11,9 @@ WFileterForm::WFileterForm(QWidget *parent) :
     ui->setupUi(this);
 
     //居中设置
-    QDesktopWidget* desktop = QApplication::desktop();
-    int width = desktop->width();
-    int height = desktop->height();
+    QScreen* desktop = QApplication::primaryScreen();
+    int width = desktop->geometry().width();
+    int height = desktop->geometry().height();
     move((width - this->width())/2, (height - this->height())/2);
 
     //单词
