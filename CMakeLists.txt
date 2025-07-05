@@ -8,20 +8,22 @@ find_package(QT NAMES Qt5 Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core5Compat Gui Sql)
 find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS PrintSupport Widgets)
 
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/ui ${CMAKE_CURRENT_SOURCE_DIR}/ui/Menu)
+
+# 自动获取src目录下的所有.cpp文件和include目录下的所有.h文件
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
+file(GLOB_RECURSE UI_FILES ${CMAKE_CURRENT_SOURCE_DIR}/ui/*.ui)
+
 qt_standard_project_setup()
 
 qt_add_executable(wubigendaqi WIN32 MACOSX_BUNDLE
-    main.cpp
-    mainwindow.cpp mainwindow.h mainwindow.ui
-    qcustomplot.cpp qcustomplot.h
-    wdb.cpp wdb.h
-    wfileinfo.cpp wfileinfo.h
-    wfilepipi.cpp wfilepipi.h
-    wfileterform.cpp wfileterform.h wfileterform.ui
-    wfiltercentence.cpp wfiltercentence.h wfiltercentence.ui
-    wfilterstatement.cpp wfilterstatement.h wfilterstatement.ui
-    wfilterword.cpp wfilterword.h wfilterword.ui
-    wuserrecord.cpp wuserrecord.h wuserrecord.ui
+    ${SOURCES}
+    ${HEADERS}
+    ${UI_FILES}
 )
 target_link_libraries(wubigendaqi PRIVATE
     Qt::Core
@@ -33,20 +35,7 @@ target_link_libraries(wubigendaqi PRIVATE
 
 # Resources:
 set(source_resource_files
-    "data/db_user_record.txt"
-    "data/di.txt"
-    "img/bg.jpg"
-    "img/file.png"
-    "img/icon.icns"
-    "img/icon.ico"
-    "style/style_default.qss"
-)
-
-qt_add_resources(wubigendaqi "source"
-    PREFIX
-        "/source"
-    FILES
-        ${source_resource_files}
+    "res/res.qrc"
 )
 
 if((QT_VERSION_MAJOR GREATER 4))

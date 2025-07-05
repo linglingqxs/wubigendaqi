@@ -4,49 +4,32 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT += core gui sql core5compat
+
+CONFIG += ninja
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = wubigendaqi
+
 TEMPLATE = app
 
+INCLUDEPATH += include
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    wfileinfo.cpp \
-    wfileterform.cpp \
-    wfilepipi.cpp \
-    wfilterstatement.cpp \
-    wfilterword.cpp \
-    wfiltercentence.cpp \
-    wdb.cpp \
-    qcustomplot.cpp \
-    wuserrecord.cpp
+SOURCES += \
+    $$files(src/*.cpp) \
+    $$files(src/Menu/*.cpp) \
 
-HEADERS  += mainwindow.h \
-    wfileinfo.h \
-    wfileterform.h \
-    wfilepipi.h \
-    wfilterstatement.h \
-    wfilterword.h \
-    wfiltercentence.h \
-    wdb.h \
-    qcustomplot.h \
-    wuserrecord.h
 
-FORMS    += mainwindow.ui \
-    wfileterform.ui \
-    wfilterstatement.ui \
-    wfilterword.ui \
-    wfiltercentence.ui \
-    wuserrecord.ui
+HEADERS  += \
+    $$files(include/*.h) \
+    $$files(include/Menu/*.h)\
 
-DISTFILES += \
-    img/file.png \
-    img/icon.ico \
-    data/db_user_record.txt
+FORMS += \
+    $$files(ui/*.ui) \
+    $$files(ui/Menu/*.ui) \
 
 RESOURCES += \
-    source.qrc
-UI_DIR=./UI
+    res/res.qrc \
+
+# UI_DIR=./UI
