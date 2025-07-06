@@ -22,8 +22,9 @@ MainWindow::MainWindow(QWidget*parent) : QMainWindow(parent), ui(new Ui::MainWin
     QDir dir;
 
     // 创建目录
-    QString dataPath = QCoreApplication::applicationDirPath() + "/data";
-    QString stylePath = QCoreApplication::applicationDirPath() + "/style";
+    QString imgPath = QCoreApplication::applicationDirPath() + "/res/img";
+    QString dataPath = QCoreApplication::applicationDirPath() + "/res/data";
+    QString stylePath = QCoreApplication::applicationDirPath() + "/res/style";
 
     if (!dir.exists(dataPath)) {
         dir.mkdir(dataPath);
@@ -269,13 +270,13 @@ void MainWindow::showDi() {
 // 读取五笔字典
 void MainWindow::readDi(QString filePath) {
     if (filePath.length() == 0) {
-        QString diPath = QCoreApplication::applicationDirPath() + "/res/data/di.txt";
+        QString diPath = QCoreApplication::applicationDirPath() + "/res/dict.txt";
         QFileInfo*fi = new QFileInfo(diPath);
 
         if (fi->isFile()) {
             filePath = diPath;
         } else {
-            filePath = ":/data/di.txt";
+            filePath = ":/data/dict.txt";
         }
     }
 
@@ -604,7 +605,9 @@ void MainWindow::changeStyle() {
 
     QFile file(stylePath);
 
-    file.open(QFile::ReadOnly);
+    if (!file.open(QFile::ReadOnly)) {
+        qDebug() << "未能打开文件：" << file.errorString();
+    }
     this->setStyleSheet(file.readAll());
     file.close();
 }

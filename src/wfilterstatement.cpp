@@ -12,7 +12,7 @@ WFilterStatement::WFilterStatement(QWidget*parent) : QWidget(parent), ui(new Ui:
     ui->setupUi(this);
 
     // ini文件
-    this->iniFile = QCoreApplication::applicationDirPath() + "/data/filter_statement.ini";
+    this->iniFile = QCoreApplication::applicationDirPath() + "/res/data/filter_statement.ini";
 
     // 输入限制
     // ui->lineEdit_linenum->setValidator(new QIntValidator(0, 100, this));

@@ -16,7 +16,7 @@ WfilterWord::WfilterWord(QWidget*parent) : QWidget(parent), ui(new Ui::WfilterWo
     ui->setupUi(this);
 
     // ini文件
-    this->iniFile = QCoreApplication::applicationDirPath() + "/data/filter_signal.ini";
+    this->iniFile = QCoreApplication::applicationDirPath() + "/res/data/filter_signal.ini";
 
     // 输入限制
     // ui->lineEdit_linenum->setValidator(new QIntValidator(0, 100, this));

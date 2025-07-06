@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>img/file.png</file>
-        <file>data/di.txt</file>
+        <file>data/dict.txt</file>
         <file>img/bg.jpg</file>
         <file>img/icon.ico</file>
         <file>data/db_user_record.txt</file>
