@@ -53,7 +53,7 @@ bool Wdb::saveResult() {
     sqlQuery.bindValue(":speed", WfilePipi::userSpeed); // 打字速度
     sqlQuery.bindValue(":correct_rate", WfilePipi::correct_rate); // 正确率
     sqlQuery.bindValue(":key_per_second", WfilePipi::key_per_second); // 每秒按键
-    sqlQuery.bindValue(":key_per_word", WfilePipi::key_per_word); // 每字按键
+    sqlQuery.bindValue("码长", WfilePipi::key_per_word); // 每字按键
     sqlQuery.bindValue(":type", WfilePipi::contentType); // 类型
     sqlQuery.bindValue(":title", WfilePipi::fileName); // 标题
     sqlQuery.bindValue(":current_position", WfilePipi::index - 1); // 第几段
